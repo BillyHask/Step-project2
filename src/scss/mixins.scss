@@ -2,3 +2,8 @@
   margin: 0 auto;
   max-width: 1780px;
 }
+
+@mixin container-tablet {
+  margin: 0 auto;
+  max-width: 928px;
+}
