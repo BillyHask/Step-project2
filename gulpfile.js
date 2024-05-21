@@ -42,6 +42,10 @@ const faviconTaskHandler = () => {
   return src("./src/favicon/**/*").pipe(dest("./dist/favicon"));
 };
 
+const fontTaskHandler = () => {
+  return src("./src/fonts/**/*").pipe(dest("./dist/fonts"));
+};
+
 function watcher() {
   gulp
     .watch("./src/html/*.html", htmlTaskHandler)
@@ -55,8 +59,10 @@ function watcher() {
   gulp
     .watch("./src/images/**/*.*", imagesTaskHandler)
     .on("all", browserSync.reload);
+  gulp.watch("./src/fonts/**/*", fontTaskHandler).on("all", browserSync.reload);
 }
 
+export const font = fontTaskHandler;
 export const favicon = faviconTaskHandler;
 export const js = jsTaskHandler;
 export const cleaning = cleanDistTaskHandler;
@@ -70,7 +76,8 @@ export const build = series(
     htmlTaskHandler,
     cssTaskHandler,
     imagesTaskHandler,
-    faviconTaskHandler
+    faviconTaskHandler,
+    fontTaskHandler
   )
 );
 
